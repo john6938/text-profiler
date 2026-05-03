@@ -2,10 +2,20 @@ import type { ProfileResult } from '../types';
 
 interface Props {
   result: ProfileResult;
+  methodId: string;
 }
 
-export default function BandStats({ result }: Props) {
-  const { bandStats, offListTokens, offListTypes, offListPercent, totalWordTokens } = result;
+export default function BandStats({ result, methodId }: Props) {
+  const { offListTokens, offListTypes, offListPercent, totalWordTokens } = result;
+  const isCoca = methodId === 'bnc_coca';
+
+  const bandStats = isCoca
+    ? result.bandStats.map(s =>
+        s.bandId === 'k21plus'
+          ? { ...s, tokenCount: s.tokenCount + offListTokens, typeCount: s.typeCount + offListTypes, percentage: s.percentage + offListPercent }
+          : s
+      )
+    : result.bandStats;
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -47,23 +57,25 @@ export default function BandStats({ result }: Props) {
                 </td>
               </tr>
             ))}
-            <tr className="border-t border-gray-200 bg-gray-50">
-              <td className="px-4 py-2">
-                <span className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-sm bg-white border border-gray-400" />
-                  <span className="font-medium text-gray-500">Off-list</span>
-                </span>
-              </td>
-              <td className="px-4 py-2 text-right font-mono text-gray-500">
-                {offListTokens.toLocaleString()}
-              </td>
-              <td className="px-4 py-2 text-right font-mono text-gray-500">
-                {offListPercent.toFixed(1)}%
-              </td>
-              <td className="px-4 py-2 text-right font-mono text-gray-500">
-                {offListTypes.toLocaleString()}
-              </td>
-            </tr>
+            {!isCoca && (
+              <tr className="border-t border-gray-200 bg-gray-50">
+                <td className="px-4 py-2">
+                  <span className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-sm bg-white border border-gray-400" />
+                    <span className="font-medium text-gray-500">Off-list</span>
+                  </span>
+                </td>
+                <td className="px-4 py-2 text-right font-mono text-gray-500">
+                  {offListTokens.toLocaleString()}
+                </td>
+                <td className="px-4 py-2 text-right font-mono text-gray-500">
+                  {offListPercent.toFixed(1)}%
+                </td>
+                <td className="px-4 py-2 text-right font-mono text-gray-500">
+                  {offListTypes.toLocaleString()}
+                </td>
+              </tr>
+            )}
             <tr className="border-t-2 border-gray-200 font-semibold bg-white">
               <td className="px-4 py-2 text-gray-700">Total</td>
               <td className="px-4 py-2 text-right font-mono text-gray-700">
