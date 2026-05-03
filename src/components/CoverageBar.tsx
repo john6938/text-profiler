@@ -4,6 +4,8 @@ interface Props {
   result: ProfileResult;
 }
 
+const SEGMENT_SHADOW = 'inset 0 0 0 1px rgba(0,0,0,0.12)';
+
 export default function CoverageBar({ result }: Props) {
   const { bandStats, offListPercent, totalWordTokens } = result;
 
@@ -24,7 +26,7 @@ export default function CoverageBar({ result }: Props) {
           s.percentage > 0 && (
             <div
               key={s.bandId}
-              style={{ width: `${s.percentage}%`, backgroundColor: s.color }}
+              style={{ width: `${s.percentage}%`, backgroundColor: s.color, boxShadow: SEGMENT_SHADOW }}
               title={`${s.shortLabel}: ${s.percentage.toFixed(1)}%`}
               className="transition-all"
             />
@@ -32,7 +34,7 @@ export default function CoverageBar({ result }: Props) {
         ))}
         {offListPercent > 0 && (
           <div
-            style={{ width: `${offListPercent}%`, backgroundColor: '#e5e7eb' }}
+            style={{ width: `${offListPercent}%`, backgroundColor: 'white', boxShadow: SEGMENT_SHADOW }}
             title={`Off-list: ${offListPercent.toFixed(1)}%`}
             className="transition-all"
           />
@@ -43,13 +45,13 @@ export default function CoverageBar({ result }: Props) {
       <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
         {bandStats.filter(s => s.tokenCount > 0).map(s => (
           <span key={s.bandId} className="flex items-center gap-1 text-xs text-gray-700">
-            <span className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: s.color }} />
+            <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ backgroundColor: s.color, boxShadow: SEGMENT_SHADOW }} />
             {s.shortLabel} {s.percentage.toFixed(1)}%
           </span>
         ))}
         {offListPercent > 0 && (
           <span className="flex items-center gap-1 text-xs text-gray-700">
-            <span className="w-2.5 h-2.5 rounded-sm bg-gray-200" />
+            <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0 bg-white border border-gray-400" />
             Off-list {offListPercent.toFixed(1)}%
           </span>
         )}

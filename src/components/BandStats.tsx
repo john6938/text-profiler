@@ -50,7 +50,7 @@ export default function BandStats({ result }: Props) {
             <tr className="border-t border-gray-200 bg-gray-50">
               <td className="px-4 py-2">
                 <span className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-sm bg-gray-300 border border-black/10" />
+                  <span className="w-3 h-3 rounded-sm bg-white border border-gray-400" />
                   <span className="font-medium text-gray-500">Off-list</span>
                 </span>
               </td>

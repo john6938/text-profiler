@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import type { ProfileResult } from '../types';
 
 interface Props {
@@ -9,24 +8,11 @@ interface Props {
 }
 
 export default function HighlightedText({ result, bandColors, bandLabels, offListColor }: Props) {
-  const [showOffList, setShowOffList] = useState(true);
-
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-4">
-      <div className="flex items-center justify-between mb-3">
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-          Highlighted text
-        </h2>
-        <label className="flex items-center gap-1.5 text-xs text-gray-500 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={showOffList}
-            onChange={e => setShowOffList(e.target.checked)}
-            className="rounded border-gray-300"
-          />
-          Highlight off-list
-        </label>
-      </div>
+      <h2 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">
+        Highlighted text
+      </h2>
 
       <div className="font-serif text-base leading-8 text-gray-900">
         {result.tokens.map((token, i) => {
@@ -51,8 +37,8 @@ export default function HighlightedText({ result, bandColors, bandLabels, offLis
             <span
               key={i}
               title="Off-list"
-              style={showOffList && offListColor ? { backgroundColor: offListColor } : undefined}
-              className={showOffList && offListColor ? 'rounded px-0.5 cursor-default' : ''}
+              style={offListColor ? { backgroundColor: offListColor } : undefined}
+              className={offListColor ? 'rounded px-0.5 cursor-default' : ''}
             >
               {token.text}
             </span>
