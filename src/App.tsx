@@ -87,7 +87,7 @@ export default function App() {
             <WordListPanel result={result} />
 
             <footer className="text-center text-xs text-gray-400 pt-2 pb-4">
-              <p>Text Profiler · TNT Lab · University of Aizu</p>
+              <p>John Blake · Aston University · Version 2.0 released 3 May 2026</p>
               <p className="mt-1">{method.citation}</p>
             </footer>
           </div>
@@ -198,7 +198,7 @@ export default function App() {
           </div>
 
           <p className="text-center text-xs text-gray-400 mt-4">
-            TNT Lab · University of Aizu · Text Profiler
+            John Blake · Aston University · Version 2.0 released 3 May 2026
           </p>
         </div>
       </div>
