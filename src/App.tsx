@@ -84,7 +84,7 @@ export default function App() {
             <CoverageBar result={result} />
             <BandStats result={result} />
             <HighlightedText result={result} bandColors={bandColors} bandLabels={bandLabels} offListColor={method.offListColor} />
-            <WordListPanel result={result} />
+            <WordListPanel result={result} methodId={method.id} />
 
             <footer className="text-center text-xs text-gray-400 pt-2 pb-4">
               <p>John Blake · Aston University · Version 2.0 released 3 May 2026</p>
