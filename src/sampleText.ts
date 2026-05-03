@@ -1,0 +1,7 @@
+export const SAMPLE_TEXT = `The algorithm processes each input node in the binary tree by recursively traversing left and right subtrees. When the function encounters a null pointer, it returns immediately without executing further operations. The implementation uses a hash table to cache previously computed results, significantly reducing redundant calculations and improving overall performance.
+
+Memory allocation occurs dynamically during runtime, with the garbage collector periodically reclaiming unused objects. The compiler optimises the bytecode by eliminating redundant instructions and applying loop unrolling where appropriate. Debugging complex software systems requires systematic analysis of stack traces, log files, and variable states across multiple execution threads.
+
+Students learning computer science should master fundamental data structures including arrays, linked lists, queues, and binary search trees before attempting more sophisticated topics such as graph algorithms or dynamic programming. Understanding recursion and iteration helps programmers select the most efficient approach for a given computational problem.
+
+The software development lifecycle encompasses requirements analysis, architectural design, iterative implementation, rigorous testing, and ongoing maintenance. Version control systems enable teams to collaborate effectively by tracking changes, resolving conflicts, and maintaining a complete history of every modification to the codebase.`;
