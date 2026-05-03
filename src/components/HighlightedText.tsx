@@ -50,9 +50,8 @@ export default function HighlightedText({ result, bandColors, bandLabels }: Prop
             <span
               key={i}
               title="Off-list"
-              className={showOffList
-                ? 'border-b-2 border-dotted border-red-400 cursor-default'
-                : ''}
+              style={showOffList ? { backgroundColor: '#d8b4fe' } : undefined}
+              className={showOffList ? 'rounded px-0.5 cursor-default' : ''}
             >
               {token.text}
             </span>

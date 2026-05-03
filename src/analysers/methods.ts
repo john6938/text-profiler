@@ -1,16 +1,12 @@
 import type { Method } from '../types';
-import { BNC_COCA, BNC_COCA_BAND_IDS } from '../data/bnc_coca';
+import { BNC_COCA } from '../data/bnc_coca';
 import { GSL_1, GSL_2, AWL } from '../data/gsl_awl';
 import { NGSL_1, NGSL_2, NGSL_3, NGSL_SUPP, TSL } from '../data/ngsl_tsl';
 import { LADYBIRD_PINK, LADYBIRD_YELLOW, LADYBIRD_GREEN, LADYBIRD_BLUE, LADYBIRD_PURPLE } from '../data/ladybird';
 import { COMPSCI } from '../data/compsci';
 
-// HSL gradient: K1 = green (120°), K34 = red (0°)
-function bncColor(bandNum: number): string {
-  const maxBand = 34;
-  const t = Math.min((bandNum - 1) / (maxBand - 1), 1);
-  const hue = Math.round(120 - t * 120);
-  return `hsl(${hue}, 75%, 82%)`;
+function union(...sets: Set<string>[]): Set<string> {
+  return new Set(sets.flatMap(s => [...s]));
 }
 
 export const METHODS: Method[] = [
@@ -43,16 +39,18 @@ export const METHODS: Method[] = [
   {
     id: 'bnc_coca',
     label: 'BNC/COCA Frequency',
-    description: 'Frequency-ranked word families from the British National Corpus and Corpus of Contemporary American English. K1 = the most frequent 1,000 families; K2 = the next 1,000; and so on up to K25 (and K31–K34 for very rare words).',
+    description: 'Frequency-ranked word families from the British National Corpus and Corpus of Contemporary American English, grouped into 7 rainbow bands. K1 (red) = the 1,000 most frequent families; off-list and K21+ words (violet) are rare or absent from the corpus.',
     citation: 'Nation & Heatley (2002); cleaned 2014',
-    defaultBandIds: ['k1', 'k2', 'k3', 'k4', 'k5'],
-    bands: BNC_COCA_BAND_IDS.map(n => ({
-      id:         `k${n}`,
-      label:      `K${n} (${((n - 1) * 1000 + 1).toLocaleString()}–${(n * 1000).toLocaleString()})`,
-      shortLabel: `K${n}`,
-      color:      bncColor(n),
-      words:      BNC_COCA[n],
-    })),
+    defaultBandIds: ['k1', 'k2', 'k3_5', 'k6_10', 'k11_15', 'k16_20', 'k21plus'],
+    bands: [
+      { id: 'k1',      label: 'K1 (1–1,000)',            shortLabel: 'K1',     color: '#fca5a5', words: BNC_COCA[1] },
+      { id: 'k2',      label: 'K2 (1,001–2,000)',         shortLabel: 'K2',     color: '#fdba74', words: BNC_COCA[2] },
+      { id: 'k3_5',    label: 'K3–5 (2,001–5,000)',       shortLabel: 'K3–5',   color: '#fef08a', words: union(BNC_COCA[3], BNC_COCA[4], BNC_COCA[5]) },
+      { id: 'k6_10',   label: 'K6–10 (5,001–10,000)',     shortLabel: 'K6–10',  color: '#86efac', words: union(BNC_COCA[6], BNC_COCA[7], BNC_COCA[8], BNC_COCA[9], BNC_COCA[10]) },
+      { id: 'k11_15',  label: 'K11–15 (10,001–15,000)',   shortLabel: 'K11–15', color: '#93c5fd', words: union(BNC_COCA[11], BNC_COCA[12], BNC_COCA[13], BNC_COCA[14], BNC_COCA[15]) },
+      { id: 'k16_20',  label: 'K16–20 (15,001–20,000)',   shortLabel: 'K16–20', color: '#a5b4fc', words: union(BNC_COCA[16], BNC_COCA[17], BNC_COCA[18], BNC_COCA[19], BNC_COCA[20]) },
+      { id: 'k21plus', label: 'K21+ (20,001+)',           shortLabel: 'K21+',   color: '#d8b4fe', words: union(BNC_COCA[21], BNC_COCA[22], BNC_COCA[23], BNC_COCA[24], BNC_COCA[25], BNC_COCA[31], BNC_COCA[32], BNC_COCA[33], BNC_COCA[34]) },
+    ],
   },
   {
     id: 'ladybird',
