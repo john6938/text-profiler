@@ -81,7 +81,7 @@ export default function App() {
         {/* Scrollable content */}
         <main className="flex-1 overflow-auto">
           <div className="max-w-screen-lg mx-auto p-4 sm:p-6 space-y-4">
-            <CoverageBar result={result} />
+            <CoverageBar result={result} methodId={method.id} />
             <BandStats result={result} methodId={method.id} />
             <HighlightedText result={result} bandColors={bandColors} bandLabels={bandLabels} offListColor={method.offListColor} />
             <WordListPanel result={result} methodId={method.id} />

@@ -2,14 +2,25 @@ import type { ProfileResult } from '../types';
 
 interface Props {
   result: ProfileResult;
+  methodId: string;
 }
 
 const SEGMENT_SHADOW = 'inset 0 0 0 1px rgba(0,0,0,0.12)';
 
-export default function CoverageBar({ result }: Props) {
-  const { bandStats, offListPercent, totalWordTokens } = result;
+export default function CoverageBar({ result, methodId }: Props) {
+  const { offListPercent, totalWordTokens } = result;
 
   if (totalWordTokens === 0) return null;
+
+  const isCoca = methodId === 'bnc_coca';
+
+  const bandStats = isCoca
+    ? result.bandStats.map(s =>
+        s.bandId === 'k21plus'
+          ? { ...s, percentage: s.percentage + offListPercent }
+          : s
+      )
+    : result.bandStats;
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-4">
@@ -32,7 +43,7 @@ export default function CoverageBar({ result }: Props) {
             />
           )
         ))}
-        {offListPercent > 0 && (
+        {!isCoca && offListPercent > 0 && (
           <div
             style={{ width: `${offListPercent}%`, backgroundColor: 'white', boxShadow: SEGMENT_SHADOW }}
             title={`Off-list: ${offListPercent.toFixed(1)}%`}
@@ -43,13 +54,13 @@ export default function CoverageBar({ result }: Props) {
 
       {/* Legend */}
       <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
-        {bandStats.filter(s => s.tokenCount > 0).map(s => (
+        {bandStats.filter(s => s.percentage > 0).map(s => (
           <span key={s.bandId} className="flex items-center gap-1 text-xs text-gray-700">
             <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ backgroundColor: s.color, boxShadow: SEGMENT_SHADOW }} />
             {s.shortLabel} {s.percentage.toFixed(1)}%
           </span>
         ))}
-        {offListPercent > 0 && (
+        {!isCoca && offListPercent > 0 && (
           <span className="flex items-center gap-1 text-xs text-gray-700">
             <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0 bg-white border border-gray-400" />
             Off-list {offListPercent.toFixed(1)}%
