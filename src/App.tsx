@@ -83,7 +83,7 @@ export default function App() {
           <div className="max-w-screen-lg mx-auto p-4 sm:p-6 space-y-4">
             <CoverageBar result={result} />
             <BandStats result={result} />
-            <HighlightedText result={result} bandColors={bandColors} bandLabels={bandLabels} />
+            <HighlightedText result={result} bandColors={bandColors} bandLabels={bandLabels} offListColor={method.offListColor} />
             <WordListPanel result={result} />
 
             <footer className="text-center text-xs text-gray-400 pt-2 pb-4">

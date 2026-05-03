@@ -5,9 +5,10 @@ interface Props {
   result: ProfileResult;
   bandColors: Map<string, string>;
   bandLabels: Map<string, string>;
+  offListColor: string;
 }
 
-export default function HighlightedText({ result, bandColors, bandLabels }: Props) {
+export default function HighlightedText({ result, bandColors, bandLabels, offListColor }: Props) {
   const [showOffList, setShowOffList] = useState(true);
 
   return (
@@ -50,7 +51,7 @@ export default function HighlightedText({ result, bandColors, bandLabels }: Prop
             <span
               key={i}
               title="Off-list"
-              style={showOffList ? { backgroundColor: '#d8b4fe' } : undefined}
+              style={showOffList ? { backgroundColor: offListColor } : undefined}
               className={showOffList ? 'rounded px-0.5 cursor-default' : ''}
             >
               {token.text}
