@@ -13,7 +13,7 @@ export interface Method {
   citation: string;
   bands: Band[];
   defaultBandIds: string[];
-  offListColor: string;
+  offListColor?: string;
 }
 
 export interface ProfileToken {

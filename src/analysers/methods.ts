@@ -15,7 +15,6 @@ export const METHODS: Method[] = [
     label: 'GSL + AWL',
     description: 'The General Service List (West 1953) covers the ~2,000 most useful English words. The Academic Word List (Coxhead 2000) adds 570 word families essential for academic reading and writing.',
     citation: 'West (1953); Coxhead (2000)',
-    offListColor: '#d1d5db',
     defaultBandIds: ['gsl1', 'gsl2', 'awl'],
     bands: [
       { id: 'gsl1', label: 'GSL 1st 1,000', shortLabel: 'GSL-1', color: '#86efac', words: GSL_1 },
@@ -28,7 +27,6 @@ export const METHODS: Method[] = [
     label: 'NGSL + TSL',
     description: 'The New General Service List (Browne et al. 2013) updates the GSL with corpus-based frequency data. The TOEIC Service List covers vocabulary needed for business and professional English (TOEIC exam).',
     citation: 'Browne, Culligan & Phillips (2013)',
-    offListColor: '#fda4af',
     defaultBandIds: ['ngsl1', 'ngsl2', 'ngsl3', 'tsl'],
     bands: [
       { id: 'ngsl1', label: 'NGSL Level 1 (1–1,000)',     shortLabel: 'NGSL-1', color: '#86efac', words: NGSL_1    },
@@ -60,7 +58,6 @@ export const METHODS: Method[] = [
     label: 'Ladybird',
     description: 'The Ladybird Key Words scheme identifies the most frequent words in everyday English reading, writing and speech. The first 12 (Pink) account for ¼ of all words used; the first 100 account for ½. Designed for young or beginning learners.',
     citation: 'Ladybird Books / McNally & Murray (1962)',
-    offListColor: '#fde68a',
     defaultBandIds: ['pink', 'yellow', 'green', 'blue', 'purple'],
     bands: [
       { id: 'pink',   label: 'Pink (top 12)',   shortLabel: 'Pink',   color: '#fbcfe8', words: LADYBIRD_PINK   },
@@ -75,7 +72,6 @@ export const METHODS: Method[] = [
     label: 'CS Academic',
     description: 'A specialist list of ~370 academic vocabulary items found in computer science research articles (Bi Jia 2020). Useful for CS students identifying technical terms they need for reading and writing in the field.',
     citation: 'Bi Jia (2020) doi:10.1016/j.esp.2020.01.001',
-    offListColor: '#a5f3fc',
     defaultBandIds: ['cs'],
     bands: [
       { id: 'cs', label: 'CS Academic Vocabulary', shortLabel: 'CS', color: '#fed7aa', words: COMPSCI },
