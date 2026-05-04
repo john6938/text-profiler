@@ -87,7 +87,7 @@ export default function App() {
             <WordListPanel result={result} methodId={method.id} />
 
             <footer className="text-center text-xs text-gray-400 pt-2 pb-4">
-              <p>John Blake · Aston University · Version 2.0 released 3 May 2026</p>
+              <p>John Blake, Aston University. Version 2.0.</p>
               <p className="mt-1">{method.citation}</p>
             </footer>
           </div>
@@ -198,7 +198,7 @@ export default function App() {
           </div>
 
           <p className="text-center text-xs text-gray-400 mt-4">
-            John Blake · Aston University · Version 2.0 released 3 May 2026
+            John Blake, Aston University. Version 2.0.
           </p>
         </div>
       </div>
